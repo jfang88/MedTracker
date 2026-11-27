@@ -21,7 +21,29 @@
       <form id="entry" autocomplete="off">
         <div class="fields">
           <label>Date <input id="date" type="date" required></label>
-          <label>Dose <input id="dose" type="text" maxlength="40" required placeholder="Amount and unit"></label>
+          <label>Dose
+              <select id="picker" required>
+                <option value="">Select recorded dose</option>
+                <optgroup label="Semaglutide · Ozempic">
+                  <option>0.25 mg</option>
+                  <option>0.5 mg</option>
+                  <option>1 mg</option>
+                  <option>2 mg</option>
+                </optgroup>
+                <optgroup label="Tirzepatide · Mounjaro">
+                  <option>2.5 mg</option>
+                  <option>5 mg</option>
+                  <option>7.5 mg</option>
+                  <option>10 mg</option>
+                  <option>12.5 mg</option>
+                  <option>15 mg</option>
+                </optgroup>
+                <option value="custom">Other amount…</option>
+              </select>
+          </label>
+          <label id="custom-label" hidden>Other amount and unit
+            <input id="dose" type="text" maxlength="40" disabled required>
+          </label>
         </div>
         <fieldset>
           <legend>Injection site</legend>

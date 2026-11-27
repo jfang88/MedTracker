@@ -23,8 +23,8 @@ h2 { font-size: 1.25rem; margin-bottom: 1rem; }
 .fields, .spots { display: grid; gap: .55rem; }
 .fields { gap: .85rem; margin-bottom: 1.15rem; }
 label, legend { font-weight: 650; }
-input, button { font: inherit; }
-.fields input { display: block; width: 100%; min-width: 0; min-height: 2.85rem; padding: .45rem .55rem; margin-top: .3rem; border: 1px solid #91aaa0; border-radius: .5rem; background: #fff; }
+input, select, button { font: inherit; }
+.fields input, .fields select { display: block; width: 100%; min-width: 0; min-height: 2.85rem; padding: .45rem .55rem; margin-top: .3rem; border: 1px solid #91aaa0; border-radius: .5rem; background: #fff; }
 fieldset { min-inline-size: 0; margin: 0 0 1.15rem; padding: 0; border: 0; }
 legend { padding: 0; margin-bottom: .4rem; }
 .spots label { display: flex; align-items: center; gap: .45rem; min-height: 3rem; padding: .4rem .55rem; border: 1px solid #b2c9be; border-radius: .55rem; font-size: 1rem; font-weight: 550; cursor: pointer; }

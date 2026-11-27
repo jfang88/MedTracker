@@ -11,6 +11,16 @@ const sites = [
 const form = document.querySelector('#entry');
 const date = document.querySelector('#date');
 const dose = document.querySelector('#dose');
+const picker = document.querySelector('#picker');
+const customLabel = document.querySelector('#custom-label');
+
+function toggleCustomDose() {
+  const custom = picker.value === 'custom';
+  customLabel.hidden = !custom;
+  dose.disabled = !custom;
+}
+
+picker.addEventListener('change', toggleCustomDose);
 const spots = document.querySelector('#spots');
 const historyList = document.querySelector('#history');
 const empty = document.querySelector('#empty');
@@ -44,7 +54,12 @@ function readEntries() {
 function showEntries(entries) {
   const newestFirst = [...entries].reverse().sort((a, b) => b.date.localeCompare(a.date));
   empty.hidden = newestFirst.length > 0;
-  dose.value = newestFirst[0]?.dose ?? '';
+  const lastDose = newestFirst[0]?.dose ?? '';
+  const preset = Array.from(picker.options).some(option =>
+    option.parentElement.tagName === 'OPTGROUP' && option.value === lastDose);
+  picker.value = preset || !lastDose ? lastDose : 'custom';
+  dose.value = preset ? '' : lastDose;
+  toggleCustomDose();
   historyList.replaceChildren();
 
   for (const entry of newestFirst) {
@@ -71,7 +86,7 @@ try {
 dose.addEventListener('input', () => dose.setCustomValidity(''));
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const amount = dose.value.trim();
+  const amount = picker.value === 'custom' ? dose.value.trim() : picker.value;
   if (!amount) {
     dose.setCustomValidity('Enter the amount you took.');
     dose.reportValidity();
