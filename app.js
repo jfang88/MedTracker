@@ -51,6 +51,26 @@ function readEntries() {
   return entries;
 }
 
+function deleteEntry(entry, displayedEntries) {
+  const summary = [dateFormat.format(new Date(entry.date)), entry.site, entry.dose].join(' · ');
+  if (!window.confirm(`Delete this entry?\n${summary}`)) return;
+
+  try {
+    const current = readEntries();
+    if (JSON.stringify(current) !== JSON.stringify(displayedEntries)) {
+      showEntries(current);
+      status.textContent = 'History has changed. Select the entry again.';
+      return;
+    }
+    const remaining = displayedEntries.filter(item => item !== entry);
+    localStorage.setItem(storageKey, JSON.stringify(remaining));
+    showEntries(remaining);
+    status.textContent = 'Entry deleted.';
+  } catch {
+    status.textContent = 'Could not delete this entry. Please try again.';
+  }
+}
+
 function showEntries(entries) {
   const newestFirst = [...entries].reverse().sort((a, b) => b.date.localeCompare(a.date));
   empty.hidden = newestFirst.length > 0;
@@ -71,7 +91,12 @@ function showEntries(entries) {
     when.textContent = dateFormat.format(new Date(entry.date));
     where.textContent = entry.site;
     amount.textContent = entry.dose;
-    row.append(when, where, amount);
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = 'Delete';
+    remove.setAttribute('aria-label', `Delete ${entry.site}, ${entry.dose}, ${when.textContent}`);
+    remove.addEventListener('click', () => deleteEntry(entry, entries));
+    row.append(when, where, amount, remove);
     historyList.append(row);
   }
 }

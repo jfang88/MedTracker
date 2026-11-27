@@ -39,6 +39,17 @@ ol { margin: 0; padding: 0; list-style: none; }
 li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .15rem .65rem; padding: .7rem 0; border-top: 1px solid #d7e2db; }
 time { grid-column: 1 / -1; font-size: .875rem; }
 li span { overflow-wrap: anywhere; max-width: min(10rem, 35vw); text-align: end; }
+li button {
+  grid-column: 2;
+  justify-self: end;
+  width: auto;
+  min-height: 2.75rem;
+  padding: .35rem .7rem;
+  background: transparent;
+  color: #923b3b;
+  text-decoration: underline;
+}
+li button:hover { background: #fff0ef; }
 @media (min-width: 23.5rem) {
   .spots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
