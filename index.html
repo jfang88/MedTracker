@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>MedTracker</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>MedTracker</h1>
+      <p>Entries are saved in this browser only.</p>
+    </header>
+
+    <section aria-labelledby="new-entry">
+      <h2 id="new-entry">Log an injection</h2>
+      <form id="entry" autocomplete="off">
+        <div class="fields">
+          <label>Date <input id="date" type="date" required></label>
+          <label>Dose <input id="dose" type="text" maxlength="40" required placeholder="Amount and unit"></label>
+        </div>
+        <fieldset>
+          <legend>Injection site</legend>
+          <div class="spots" id="spots"></div>
+        </fieldset>
+        <button type="submit">Save entry</button>
+      </form>
+      <p id="status" role="status"></p>
+    </section>
+
+    <section aria-labelledby="history-title">
+      <h2 id="history-title">History</h2>
+      <p id="empty">Your saved entries will appear here.</p>
+      <ol id="history"></ol>
+    </section>
+  </main>
+</body>
+</html>
