@@ -1,5 +1,7 @@
 # MedTracker
 
+[Open MedTracker on GitHub Pages](https://jfang88.github.io/MedTracker/)
+
 A small, static browser-local log. Add the date, location, and amount for each entry. The dose field starts blank and then prefills from the newest dated entry. You can change it before each save.
 
 Entries live in the current browser profile's site storage. Clearing site data removes the log. The app has no backend, analytics, or external assets.
